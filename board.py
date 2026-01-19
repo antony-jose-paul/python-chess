@@ -43,7 +43,7 @@ class Board:
         
         if piece.lower() == "p":
             if not self.valid_pawn_move(sr,sc,er,ec,piece):
-                print("invalid pawn movement")
+                print("invalid pawn move")
                 return
 
 
