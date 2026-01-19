@@ -10,6 +10,7 @@ class Board:
             ["P","P","P","P","P","P","P","P"],
             ["R","N","B","Q","K","B","N","R"]
         ]
+        self.turn = "white"
 
     def display(self):
         print(" a b c d e f g h")
@@ -29,7 +30,21 @@ class Board:
         er,ec = self.parse_position(end)
 
         piece = self.board[sr][sc]
+
+        if piece == ".":
+            print("no piece at start square")
+            return
+        if self.turn == "white" and piece.islower():
+            print("black piece,whites turn")
+            return 
+        if self.turn == "black" and piece.isupper():
+            print("white piece,blacks turn")
+            return
+
+
         self.board[sr][sc] = "."
         self.board[er][ec] = piece
+        
+        self.turn += "black" if self.turn == "white" else "white"
 
 

@@ -3,6 +3,7 @@ def main():
     board = Board()
     while True:
         board.display()
+        print(f"{board.turn.capitalize()}'s turn")
         move = input("Enter move (e2 e4) or q:")
         if move == "q":
             break
