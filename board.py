@@ -46,6 +46,11 @@ class Board:
                 print("invalid pawn move")
                 return
 
+        if piece.lower() == "r":
+            if not self.valid_rook_move(sr,sc,er,ec,piece):
+                print("invalid rook move")
+                return
+
 
         self.board[sr][sc] = "."
         self.board[er][ec] = piece
@@ -67,7 +72,37 @@ class Board:
             if self.board[er][ec]!=".":
                 return True
         return False
+    
 
+    def is_path_clear(self,sr,sc,er,ec):
+        if sr == er:
+            step = 1 if ec > sc else -1
+            for c in range(sc+step,ec,step):
+                if self.board[sr][c] != ".":
+                    return False
+        elif sc == ec :
+            step = 1 if er > sr else -1
+            for c in range(sr+step,er,step):
+                if self.board[r][sc]!=".":
+                    return False
+    
+        return True
+
+    def valid_rook_move(self,sr,sc,er,ec,piece):
+        if sr != er and sc != ec :
+            return False
+        if not self.is_path_clear(sr,sc,er,ec):
+            return False
+        
+        target = self.board[er][ec]
+
+        if target != ".":
+            if self.is_white(piece) and self.is_white(target):
+                return False
+            if self.is_black(piece) and self.is_black(target):
+                return False
+
+        return True
 
         
         
